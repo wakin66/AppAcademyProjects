@@ -1,4 +1,5 @@
-require_relative "tile"
+require_relative 'tile'
+require 'colorize'
 
 class Board
 
@@ -24,7 +25,7 @@ class Board
             puts ""
             print idx
             line.each do |tile|
-                if !tile.bombed?
+                if !tile.revealed?
                     print "| "
                 else
                     print "|Q"
@@ -45,8 +46,8 @@ class Board
         locs = bomb_locs
         (0..size-1).each do |x|
             (0..size-1).each do |y|
+                pos = [x,y]
                 if locs.include?([x,y])
-                    pos = [x,y]
                     @grid[x][y] = Tile.new(pos,self,true)
                 else
                     @grid[x][y] = Tile.new(pos,self)
