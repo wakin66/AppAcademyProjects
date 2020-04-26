@@ -1,0 +1,5 @@
+load "card.rb"
+load "board.rb"
+load "game.rb"
+load "humanPlayer.rb"
+load "aiPlayer.rb"

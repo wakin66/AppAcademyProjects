@@ -1,0 +1,3 @@
+load "tile.rb"
+load "board.rb"
+load "game.rb"
