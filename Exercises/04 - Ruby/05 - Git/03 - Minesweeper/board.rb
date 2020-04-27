@@ -8,8 +8,6 @@ class Board
         @size = size
         @lost = false
         fill_grid
-        puts "Number of bombs: #{@num_bombs}"
-        sleep(5)
     end
 
     def [](pos)    #Get a tile from the grid
