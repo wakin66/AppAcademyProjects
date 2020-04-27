@@ -42,7 +42,7 @@ class Tile
         list = Array.new
         modifiers.each do |mod|
             neighbor_pos = mod.map.with_index {|x,idx| x+@pos[idx]}
-            list << @board[neighbor_pos]
+            list << @board[neighbor_pos] if !neighbor_pos.include?(-1) && !neighbor_pos.include?(@board.size)
         end
         return list
     end
