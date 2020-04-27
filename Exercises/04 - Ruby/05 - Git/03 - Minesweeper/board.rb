@@ -2,6 +2,7 @@ require_relative 'tile'
 require 'colorize'
 
 class Board
+    attr_reader :size
 
     def initialize(size = 9)
         @grid = Array.new(size) {Array.new(size)}
@@ -50,7 +51,7 @@ class Board
 
     private
 
-    attr_reader :grid, :size
+    attr_reader :grid
 
     def fill_grid
         locs = bomb_locs
