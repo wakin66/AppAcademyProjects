@@ -14,7 +14,7 @@ class Args
         return @args.include?(arg)
     end
 
-    def value(arg)
+    def [](arg)
         return @args[arg]
     end
 
