@@ -13,11 +13,14 @@ class Game
     end
 
     def play
-        board.render
-        pos = get_pos
-        board[pos].reveal
-        puts
-        board.render
+        until game_over?
+            board.render
+            pos = get_pos
+            tile = board[pos]
+            tile.reveal
+            puts
+            board.game_over if tile.bombed?
+        end
     end
 
     def get_pos
@@ -51,6 +54,10 @@ class Game
     private
 
     attr_reader :board
+
+    def game_over?
+        board.won? || board.lost?
+    end
 
 end
 
