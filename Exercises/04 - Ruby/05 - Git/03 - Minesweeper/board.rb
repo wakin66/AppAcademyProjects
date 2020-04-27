@@ -45,7 +45,7 @@ class Board
         render
     end
 
-    #private
+    private
 
     attr_reader :grid, :size
 
@@ -86,7 +86,11 @@ class Board
     def print_tile(tile)
         if tile.revealed?
             (return "X".red.on_red) if tile.bombed?
-            return " ".on_blue
+            if tile.neighbor_bomb_count == 0
+                return " ".on_blue
+            else
+                return "#{tile.neighbor_bomb_count}".on_blue
+            end
         else
             (return "X".red.on_light_black) if tile.bombed?
             return " "
