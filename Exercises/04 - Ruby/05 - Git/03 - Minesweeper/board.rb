@@ -6,8 +6,8 @@ class Board
     def initialize(size = 9)
         @grid = Array.new(size) {Array.new(size)}
         @size = size
+        @lost = false
         fill_grid
-        render
         puts "Number of bombs: #{@num_bombs}"
         sleep(5)
     end
@@ -15,10 +15,6 @@ class Board
     def [](pos)    #Get a tile from the grid
         x,y = pos
         return grid[x][y]
-    end
-
-    def won?
-        (size**2) - @num_bombs == num_revealed
     end
 
     def render
@@ -41,8 +37,17 @@ class Board
     end
 
     def game_over
+        @lost = true
         reveal_all
         render
+    end
+
+    def won?
+        (size**2) - @num_bombs == num_revealed
+    end
+
+    def lost?
+        @lost
     end
 
     private
@@ -92,7 +97,7 @@ class Board
                 return "#{tile.neighbor_bomb_count}".on_blue
             end
         else
-            (return "X".red.on_light_black) if tile.bombed?
+            (return "X".red.on_light_black) if tile.bombed? && lost?
             return " "
         end
     end
