@@ -18,6 +18,7 @@ class Game
             pos = get_pos
             tile = board[pos]
             tile.reveal
+            reveal_empty(tile.neighbors) if tile.neighbor_bomb_count == 0
             puts
             board.game_over if tile.bombed?
         end
@@ -57,6 +58,17 @@ class Game
 
     def game_over?
         board.won? || board.lost?
+    end
+
+    def reveal_empty(neighbors)
+        list = neighbors
+        list.each do |tile|
+            if tile.neighbor_bomb_count == 0
+                tile.neighbors.each {|neighbor| list << neighbor if !list.include?(neighbor)}
+            end
+        end
+        list.each {|tile| tile.reveal}
+        return true
     end
 
 end
