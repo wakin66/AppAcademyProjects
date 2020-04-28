@@ -51,4 +51,15 @@ class Tile
         neighbors.count {|tile| tile.bombed?}
     end
 
+    def reveal_empty
+        list = neighbors
+        list.each do |tile|
+            if tile.neighbor_bomb_count == 0
+                tile.neighbors.each {|neighbor| list << neighbor if !list.include?(neighbor)}
+            end
+        end
+        list.each {|tile| tile.reveal}
+        return true
+    end
+
 end
