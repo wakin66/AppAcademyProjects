@@ -21,7 +21,7 @@ class Tile
     end
 
     def reveal
-        @revealed = true
+        flagged? ? (return false) : (@revealed = true)
     end
 
     def flag
