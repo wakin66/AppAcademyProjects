@@ -25,7 +25,7 @@ class Tile
     end
 
     def flag
-        flagged? ? @flag = false : @flag = true
+        (flagged? && !revealed?) ? @flag = false : @flag = true
     end
 
     def neighbors
