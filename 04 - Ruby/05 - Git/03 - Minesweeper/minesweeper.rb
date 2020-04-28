@@ -1,5 +1,6 @@
 require_relative 'args'
 require_relative 'board'
+require 'yaml'
 
 class Game
 
@@ -15,16 +16,20 @@ class Game
     def play
         until game_over?
             board.render
-            pos = get_pos
-            tile = board[pos]
             action = get_action
-            if action == "r"
-                tile.reveal
-                tile.reveal_empty if tile.neighbor_bomb_count == 0
-                puts
-                board.game_over if tile.bombed?
-            elsif action == "f"
-                tile.flag
+            if action == "s"
+                save_game
+            else
+                pos = get_pos
+                tile = board[pos]
+                if action == "r"
+                    tile.reveal
+                    tile.reveal_empty if tile.neighbor_bomb_count == 0
+                    puts
+                    board.game_over if tile.bombed?
+                elsif action == "f"
+                    tile.flag
+                end
             end
         end
     end
@@ -51,14 +56,14 @@ class Game
     def get_action
         action = nil
         until action && valid_action?(action)
-            puts "Please enter the action to take ('r'eveal or 'f'lag)"
+            puts "Please enter the action to take ('r'eveal, 'f'lag, 's'ave)"
             print "> "
 
             begin
                 action = gets.chomp
                 raise if !valid_action?(action)
             rescue
-                puts "Invalid action entered ('r' or 'f')"
+                puts "Invalid action entered"
                 puts
 
                 action = nil
@@ -70,7 +75,7 @@ class Game
     def valid_action?(string)
         string.is_a?(String) &&
             string.length == 1 &&
-            "fr".include?(string)
+            "frs".include?(string)
     end
 
     def parse_pos(string)
@@ -89,6 +94,10 @@ class Game
 
     def game_over?
         board.won? || board.lost?
+    end
+
+    def save_game
+        File.open("board.yml", "w") { |file| file.write(@board.to_yaml) }
     end
 
 end
