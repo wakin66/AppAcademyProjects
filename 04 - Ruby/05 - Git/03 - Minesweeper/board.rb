@@ -88,6 +88,7 @@ class Board
     end
 
     def print_tile(tile)
+        (return "F") if tile.flagged?
         if tile.revealed?
             (return "X".red.on_red) if tile.bombed?
             if tile.neighbor_bomb_count == 0
