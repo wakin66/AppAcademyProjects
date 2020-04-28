@@ -22,16 +22,16 @@ class Board
         puts ""
         grid.each_with_index do |line, idx|
             print " "
-            (size*2+1).times {print "-"}
+            (size*2+1).times {print "-".on_light_black}
             puts ""
             print idx
             line.each do |tile|
-                print "|#{print_tile(tile)}"
+                print "|".on_light_black+"#{print_tile(tile)}"
             end
-            puts "|"
+            puts "|".on_light_black
         end
         print " "
-        (size*2+1).times {print "-"}
+        (size*2+1).times {print "-".on_light_black}
         puts ""
     end
 
@@ -88,7 +88,7 @@ class Board
     end
 
     def print_tile(tile)
-        (return "F") if tile.flagged?
+        (return "F".on_light_black) if tile.flagged?
         if tile.revealed?
             (return "X".red.on_red) if tile.bombed?
             if tile.neighbor_bomb_count == 0
