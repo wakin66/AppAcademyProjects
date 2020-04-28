@@ -92,9 +92,9 @@ class Board
         if tile.revealed?
             (return "X".red.on_red) if tile.bombed?
             if tile.neighbor_bomb_count == 0
-                return " ".on_blue
+                return " ".on_light_black
             else
-                return "#{tile.neighbor_bomb_count}".on_blue
+                return "#{tile.neighbor_bomb_count}".on_light_black
             end
         else
             (return "X".red.on_light_black) if tile.bombed? && lost?
