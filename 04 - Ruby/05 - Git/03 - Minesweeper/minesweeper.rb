@@ -17,10 +17,15 @@ class Game
             board.render
             pos = get_pos
             tile = board[pos]
-            tile.reveal
-            tile.reveal_empty if tile.neighbor_bomb_count == 0
-            puts
-            board.game_over if tile.bombed?
+            action = get_action
+            if action == "r"
+                tile.reveal
+                tile.reveal_empty if tile.neighbor_bomb_count == 0
+                puts
+                board.game_over if tile.bombed?
+            elsif action == "f"
+                tile.flag
+            end
         end
     end
 
@@ -32,14 +37,40 @@ class Game
 
             begin
                 pos = parse_pos(gets.chomp)
+                raise if !valid_pos?(pos)
             rescue
                 puts "Invalid position entered (did you use a comma?)"
-                puts ""
+                puts
 
                 pos = nil
             end
         end
-        pos
+        return pos
+    end
+
+    def get_action
+        action = nil
+        until action && valid_action?(action)
+            puts "Please enter the action to take ('r'eveal or 'f'lag)"
+            print "> "
+
+            begin
+                action = gets.chomp
+                raise if !valid_action?(action)
+            rescue
+                puts "Invalid action entered ('r' or 'f')"
+                puts
+
+                action = nil
+            end
+        end
+        return action
+    end
+
+    def valid_action?(string)
+        string.is_a?(String) &&
+            string.length == 1 &&
+            "fr".include?(string)
     end
 
     def parse_pos(string)
