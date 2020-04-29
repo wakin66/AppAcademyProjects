@@ -17,6 +17,7 @@ class Game
 
     def play
         until game_over?
+            system("clear")
             board.render
             action = get_action
             if action == "s"
