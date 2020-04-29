@@ -19,6 +19,8 @@ class Game
             action = get_action
             if action == "s"
                 save_game
+            elsif action == "q"
+                exit 0
             else
                 pos = get_pos
                 tile = board[pos]
@@ -56,7 +58,7 @@ class Game
     def get_action
         action = nil
         until action && valid_action?(action)
-            puts "Please enter the action to take ('r'eveal, 'f'lag, 's'ave)"
+            puts "Please enter the action to take ('r'eveal, 'f'lag, 's'ave, 'q'uit)"
             print "> "
 
             begin
@@ -75,7 +77,7 @@ class Game
     def valid_action?(string)
         string.is_a?(String) &&
             string.length == 1 &&
-            "frs".include?(string)
+            "frsq".include?(string)
     end
 
     def parse_pos(string)
