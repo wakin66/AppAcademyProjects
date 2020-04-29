@@ -6,8 +6,10 @@ class Game
 
     def initialize(file = nil,size = nil)
         #Usage: #$0 ruby minesweeper.rb [-f arg] [-s arg]
-        if !size.nil?
-            @board = Board.new(size)
+        if !file.nil?
+            @board = YAML.load(File.read("board.yml"))
+        elsif !size.nil?
+            @board = Board.new(size.to_i)
         else
             @board = Board.new
         end
@@ -26,7 +28,7 @@ class Game
                 tile = board[pos]
                 if action == "r"
                     tile.reveal
-                    tile.reveal_empty if tile.neighbor_bomb_count == 0
+                    tile.reveal_empty if tile.revealed? && tile.neighbor_bomb_count == 0
                     puts
                     board.game_over if tile.bombed?
                 elsif action == "f"
@@ -43,7 +45,7 @@ class Game
             print "> "
 
             begin
-                pos = parse_pos(gets.chomp)
+                pos = parse_pos($stdin.gets.chomp)
                 raise if !valid_pos?(pos)
             rescue
                 puts "Invalid position entered (did you use a comma?)"
@@ -62,7 +64,7 @@ class Game
             print "> "
 
             begin
-                action = gets.chomp
+                action = $stdin.gets.chomp
                 raise if !valid_action?(action)
             rescue
                 puts "Invalid action entered"
