@@ -27,21 +27,3 @@ class PolyTreeNode
         child.parent = nil if child.parent == self
     end
 end
-
-def test
-    n1 = PolyTreeNode.new("root1")
-    n2 = PolyTreeNode.new("root2")
-    n3 = PolyTreeNode.new("root3")
-
-    # connect n3 to n1
-    n3.parent = n1
-    # connect n3 to n2
-    n3.parent = n2
-
-    # this should work
-    raise "Bad parent=!1" unless n3.parent == n2
-    raise "Bad parent=!2" unless n2.children == [n3]
-
-    # this probably doesn't
-    raise "Bad parent=!3" unless n1.children == []
-end
