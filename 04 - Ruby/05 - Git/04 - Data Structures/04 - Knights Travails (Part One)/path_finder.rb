@@ -8,7 +8,18 @@ class KnightPathFinder
     end
     
     def build_move_tree 
-
+        queue = [@root_node]
+        @tree = [@root_node]
+        while !queue.empty?
+            start_node = queue.shift
+            positions = new_move_positions(start_node.value)
+            positions.each do |pos|
+                new_node = PolyTreeNode.new(pos)
+                new_node.parent = start_node
+                @tree << new_node
+                queue << new_node
+            end
+        end
     end
 
     def find_path(target_pos)
@@ -38,8 +49,6 @@ class KnightPathFinder
         new_pos = KnightPathFinder.valid_moves(pos)
         new_pos.delete_if {|ele| @considered_positions.include?(ele)}
         @considered_positions += new_pos
-        print @considered_positions
-        puts
         return new_pos
     end
 
