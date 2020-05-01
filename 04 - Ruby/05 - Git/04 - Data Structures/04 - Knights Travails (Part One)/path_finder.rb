@@ -28,8 +28,8 @@ class KnightPathFinder
         ]
         positions = Array.new
         modifiers.each do |mod|
-            neighbor_pos = mod.map.with_index {|x,idx| x+@pos[idx]}
-            positions << @board[neighbor_pos] if !neighbor_pos.include?(-1) && !neighbor_pos.include?(@board.size)
+            new_pos = [pos,mod].transpose.map {|x| x.reduce(:+)}
+            positions << new_pos if !new_pos.include?(-1) && !new_pos.include?(8)
         end
         return positions
     end
