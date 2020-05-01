@@ -35,7 +35,12 @@ class KnightPathFinder
     end
 
     def new_move_positions(pos)
-        KnightPathFinder.valid_moves(pos)
+        new_pos = KnightPathFinder.valid_moves(pos)
+        new_pos.delete_if {|ele| @considered_positions.include?(ele)}
+        @considered_positions += new_pos
+        print @considered_positions
+        puts
+        return new_pos
     end
 
 end
