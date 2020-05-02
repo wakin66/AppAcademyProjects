@@ -27,7 +27,7 @@ class TicTacToeNode
   end
 
   def create_node(pos)
-    next_mover_mark == "X" ? mark = "O" : mark = "X"
+    next_mover_mark == :x ? mark = :o : mark = :x
     next_board = @board.dup
     next_board[pos] = next_mover_mark
     return TicTacToeNode.new(next_board,mark,pos)
