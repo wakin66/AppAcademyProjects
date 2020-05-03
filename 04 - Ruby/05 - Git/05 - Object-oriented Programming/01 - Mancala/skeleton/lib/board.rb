@@ -41,7 +41,7 @@ class Board
   def next_turn(ending_cup_idx)
     # helper method to determine whether #make_move returns :switch, :prompt, or ending_cup_idx
     return :prompt if ending_cup_idx == 6 || ending_cup_idx == 13
-    cups[ending_cup_idx].empty? ? :switch : ending_cup_idx
+    cups[ending_cup_idx].count == 1 ? :switch : ending_cup_idx
   end
 
   def render
