@@ -4,6 +4,8 @@ class Board
   def initialize(name1, name2)
     @cups = Array.new(14) {Array.new}
     place_stones
+    @player1 = name1
+    @player2 = name2
   end
 
   def place_stones
@@ -24,15 +26,22 @@ class Board
     num_stones = cups[start_pos].count
     cups[start_pos] = Array.new
     idx = start_pos
+    other_player_cup = current_player_name == @player1 ? 13 : 6
     while num_stones > 0
       idx += 1
-      cups[idx] << :stone
-      num_stones -= 1
+      idx -= 14 if idx == 14
+      if idx != other_player_cup
+        cups[idx] << :stone
+        num_stones -= 1
+      end
     end
+    return next_turn(idx)
   end
 
   def next_turn(ending_cup_idx)
     # helper method to determine whether #make_move returns :switch, :prompt, or ending_cup_idx
+    return :prompt if ending_cup_idx == 6 || ending_cup_idx == 13
+    cups[ending_cup_idx].empty? ? :prompt : ending_cup_idx
   end
 
   def render
