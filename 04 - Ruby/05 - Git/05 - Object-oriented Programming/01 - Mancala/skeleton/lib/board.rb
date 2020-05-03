@@ -28,8 +28,7 @@ class Board
     idx = start_pos
     other_player_cup = current_player_name == @player1 ? 13 : 6
     while num_stones > 0
-      idx += 1
-      idx -= 14 if idx == 14
+      idx = idx == 13 ? idx-13 : idx+1
       if idx != other_player_cup
         cups[idx] << :stone
         num_stones -= 1
