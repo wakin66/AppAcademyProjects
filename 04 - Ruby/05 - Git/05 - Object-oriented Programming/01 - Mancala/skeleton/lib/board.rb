@@ -15,6 +15,8 @@ class Board
   end
 
   def valid_move?(start_pos)
+    raise "Invalid starting cup" if !(0..13).include?(start_pos)
+    raise "Starting cup is empty" if cups[start_pos].empty?
   end
 
   def make_move(start_pos, current_player_name)
