@@ -8,9 +8,10 @@ class Board
 
   def place_stones
     # helper method to #initialize every non-store cup with four stones each
-    four_stones = Array.new(4) {:stone}
     cups.each_index do |idx|
-      cups[idx] = four_stones unless idx == 6 || idx == 13
+      4.times do 
+        cups[idx] << :stone unless idx == 6 || idx == 13
+      end
     end
   end
 
@@ -20,6 +21,14 @@ class Board
   end
 
   def make_move(start_pos, current_player_name)
+    num_stones = cups[start_pos].count
+    cups[start_pos] = Array.new
+    idx = start_pos
+    while num_stones > 0
+      idx += 1
+      cups[idx] << :stone
+      num_stones -= 1
+    end
   end
 
   def next_turn(ending_cup_idx)
