@@ -57,5 +57,12 @@ class Board
   end
 
   def winner
+    if cups[6].count > cups[13].count
+      return @player1
+    elsif cups[6].count < cups[13].count
+      return @player2
+    else
+      return :draw
+    end
   end
 end
