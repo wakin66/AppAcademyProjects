@@ -19,6 +19,22 @@ class Manager < Employee
         @employees.delete(employee)
         employee.boss = nil
         return true
-    end 
+    end
+
+    def bonus(multiplier)
+        sum_employee_salary * multiplier
+    end
+
+    def sum_employee_salary
+        sum = 0
+        @employees.each do |employee|
+            begin
+                sum += (employee.salary + employee.sum_employee_salary)
+            rescue NoMethodError
+                sum += employee.salary
+            end
+        end
+        return sum
+    end
 
 end
