@@ -24,3 +24,9 @@ class NoPieceError < Error
         super
     end
 end
+
+class OccupiedPosition < PositionError
+    def initialize(msg = "There is already a pice there")
+        super
+    end
+end
