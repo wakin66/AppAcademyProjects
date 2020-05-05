@@ -42,10 +42,8 @@ class Board
     end
 
     def move_piece(start_pos,end_pos) #add color argument back later
-        raise StartPositionError if !valid_pos?(start_pos)
-        raise EndPositionError if !valid_pos?(end_pos)
         raise NoPieceError if self[start_pos] == nil
-        raise OccupiedPosition if self[end_pos] != nil
+        raise EndPositionError.new "Cannot move piece to that location" if self[end_pos] != nil  #This is the wrong error conditions
         piece_to_move = self[start_pos]
         self[start_pos] = nil
         self[end_pos] = piece_to_move
