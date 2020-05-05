@@ -46,6 +46,9 @@ class Board
         raise EndPositionError if !valid_pos?(end_pos)
         raise NoPieceError if self[start_pos] == nil
         raise OccupiedPosition if self[end_pos] != nil
+        piece_to_move = self[start_pos]
+        self[start_pos] = nil
+        self[end_pos] = piece_to_move
     end
 
     def valid_pos?(pos)
