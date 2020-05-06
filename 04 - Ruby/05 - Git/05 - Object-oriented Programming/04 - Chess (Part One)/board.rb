@@ -16,24 +16,24 @@ class Board
                 if [2,3,4,5].include? x #nullPieces
                     self[pos] = NullPiece.instance
                 elsif x == 1 #Black Pawns
-                    self[pos] = Piece.new(:Black,self,pos)
+                    self[pos] = Pawn.new(:black,self,pos)
                 elsif x == 6 #White Pawns
-                    self[pos] = Piece.new(:White,self,pos)
+                    self[pos] = Pawn.new(:white,self,pos)
                 elsif [0,7].include? y #Rook
-                    self[pos] = Piece.new(:Black,self,pos) if x == 0
-                    self[pos] = Piece.new(:White,self,pos) if x == 7
+                    self[pos] = Piece.new(:black,self,pos) if x == 0
+                    self[pos] = Piece.new(:white,self,pos) if x == 7
                 elsif [1,6].include? y #Knight
-                    self[pos] = Piece.new(:Black,self,pos) if x == 0
-                    self[pos] = Piece.new(:White,self,pos) if x == 7
+                    self[pos] = Piece.new(:black,self,pos) if x == 0
+                    self[pos] = Piece.new(:white,self,pos) if x == 7
                 elsif [2,5].include? y #Bishop
-                    self[pos] = Piece.new(:Black,self,pos) if x == 0
-                    self[pos] = Piece.new(:White,self,pos) if x == 7
+                    self[pos] = Piece.new(:black,self,pos) if x == 0
+                    self[pos] = Piece.new(:white,self,pos) if x == 7
                 elsif y == 3 #Queen
-                    self[pos] = Piece.new(:Black,self,pos) if x == 0
-                    self[pos] = Piece.new(:White,self,pos) if x == 7
+                    self[pos] = Piece.new(:black,self,pos) if x == 0
+                    self[pos] = Piece.new(:white,self,pos) if x == 7
                 else #King
-                    self[pos] = Piece.new(:Black,self,pos) if x == 0
-                    self[pos] = Piece.new(:White,self,pos) if x == 7
+                    self[pos] = Piece.new(:black,self,pos) if x == 0
+                    self[pos] = Piece.new(:white,self,pos) if x == 7
                 end
             end
         end
@@ -50,8 +50,8 @@ class Board
     end
 
     def move_piece(start_pos,end_pos) #add color argument back later
-        raise NoPieceError if self[start_pos].symbol == :nil
-        raise EndPositionError.new "Cannot move piece to that location" if self[start_pos].moves.include?(end_pos)
+        raise NoPieceError if self[start_pos].symbol == :null
+        raise EndPositionError.new "Cannot move piece to that location" if !self[start_pos].moves.include?(end_pos)
         piece_to_move = self[start_pos]
         self[start_pos] = nil
         self[end_pos] = piece_to_move
