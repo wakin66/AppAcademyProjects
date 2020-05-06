@@ -17,15 +17,13 @@ class Piece
     end
 
     def valid_moves
-
     end
 
     def pos=(val)
-
+        @pos = val
     end
 
     def symbol
-
     end
 
     private
