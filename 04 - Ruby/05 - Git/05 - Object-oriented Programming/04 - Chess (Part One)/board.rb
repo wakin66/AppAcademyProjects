@@ -1,31 +1,39 @@
-require_relative 'pieces/piece'
+require_relative 'pieces'
 require_relative 'custom_errors'
 
 class Board
 
     def initialize
         @rows = Array.new(8) {Array.new(8)}
-        @sentinel = nil #change to NullPiece when class is written
+        @sentinel = NullPiece.instance
         fill_board
     end
 
     def fill_board
         (0..7).each do |x|
             (0..7).each do |y|
+                pos = [x,y]
                 if [2,3,4,5].include? x #nullPieces
-                    @rows[x][y] = nil
-                elsif [1,6].include? x #Pawns
-                    @rows[x][y] = Piece.new
+                    self[pos] = NullPiece.instance
+                elsif x == 1 #Black Pawns
+                    self[pos] = Piece.new(:Black,self,pos)
+                elsif x == 6 #White Pawns
+                    self[pos] = Piece.new(:White,self,pos)
                 elsif [0,7].include? y #Rook
-                    @rows[x][y] = Piece.new
+                    self[pos] = Piece.new(:Black,self,pos) if x == 0
+                    self[pos] = Piece.new(:White,self,pos) if x == 7
                 elsif [1,6].include? y #Knight
-                    @rows[x][y] = Piece.new
+                    self[pos] = Piece.new(:Black,self,pos) if x == 0
+                    self[pos] = Piece.new(:White,self,pos) if x == 7
                 elsif [2,5].include? y #Bishop
-                    @rows[x][y] = Piece.new
+                    self[pos] = Piece.new(:Black,self,pos) if x == 0
+                    self[pos] = Piece.new(:White,self,pos) if x == 7
                 elsif y == 3 #Queen
-                    @rows[x][y] = Piece.new
+                    self[pos] = Piece.new(:Black,self,pos) if x == 0
+                    self[pos] = Piece.new(:White,self,pos) if x == 7
                 else #King
-                    @rows[x][y] = Piece.new
+                    self[pos] = Piece.new(:Black,self,pos) if x == 0
+                    self[pos] = Piece.new(:White,self,pos) if x == 7
                 end
             end
         end
@@ -42,8 +50,8 @@ class Board
     end
 
     def move_piece(start_pos,end_pos) #add color argument back later
-        raise NoPieceError if self[start_pos] == nil
-        raise EndPositionError.new "Cannot move piece to that location" if self[end_pos] != nil  #This is the wrong error conditions
+        raise NoPieceError if self[start_pos].symbol == :nil
+        raise EndPositionError.new "Cannot move piece to that location" if self[start_pos].moves.include?(end_pos)
         piece_to_move = self[start_pos]
         self[start_pos] = nil
         self[end_pos] = piece_to_move
@@ -73,7 +81,14 @@ class Board
     end
 
     def pieces
-
+        list = Array.new
+        (0..7).each do |x|
+            (0..7).each do |y|
+                pos = [x,y]
+                list << self[pos] if self[pos].symbol != :nil && !list.include?(self[pos])
+            end
+        end
+        return list
     end
 
     def dup
