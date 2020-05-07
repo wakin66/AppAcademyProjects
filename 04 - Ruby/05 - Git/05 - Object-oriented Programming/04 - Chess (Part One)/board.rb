@@ -26,8 +26,8 @@ class Board
                     self[pos] = Piece.new(:black,self,pos) if x == 0
                     self[pos] = Piece.new(:white,self,pos) if x == 7
                 elsif [2,5].include? y #Bishop
-                    self[pos] = Piece.new(:black,self,pos) if x == 0
-                    self[pos] = Piece.new(:white,self,pos) if x == 7
+                    self[pos] = Bishop.new(:black,self,pos) if x == 0
+                    self[pos] = Bishop.new(:white,self,pos) if x == 7
                 elsif y == 3 #Queen
                     self[pos] = Piece.new(:black,self,pos) if x == 0
                     self[pos] = Piece.new(:white,self,pos) if x == 7
