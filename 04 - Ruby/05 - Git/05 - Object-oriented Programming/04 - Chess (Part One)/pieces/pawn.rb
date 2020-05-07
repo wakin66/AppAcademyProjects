@@ -31,15 +31,20 @@ class Pawn < Piece
         x,y = pos
         one_step = [x+forward_dir,y]
         two_step = [x+(forward_dir*2),y]
-        list = Array.new
-        list << one_step if board.valid_pos?(one_step) && board[one_step].symbol == :null
-        list << two_step if at_start_row? && board.valid_pos?(two_step) && board[two_step].symbol == :null
-        return list
+        steps = Array.new
+        steps << one_step if board.valid_pos?(one_step) && board[one_step].symbol == :null
+        steps << two_step if at_start_row? && board.valid_pos?(two_step) && board[two_step].symbol == :null
+        return steps
     end
 
     def side_attacks
-        list = Array.new
-        return list
+        x,y = pos
+        steps = Array.new
+        left_step = [x+forward_dir,y-1]
+        right_step = [x+forward_dir,y+1]
+        steps << left_step if board.valid_pos?(left_step) && board[left_step].symbol != :null
+        steps << right_step if board.valid_pos?(right_step) && board[right_step].symbol != :null
+        return steps
     end
 
 end
