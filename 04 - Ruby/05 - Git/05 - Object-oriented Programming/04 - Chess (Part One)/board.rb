@@ -53,8 +53,9 @@ class Board
         raise NoPieceError if self[start_pos].symbol == :null
         raise EndPositionError.new "Cannot move piece to that location" if !self[start_pos].moves.include?(end_pos)
         piece_to_move = self[start_pos]
-        self[start_pos] = nil
+        self[start_pos] = NullPiece.instance
         self[end_pos] = piece_to_move
+        piece_to_move.pos = end_pos
     end
 
     def valid_pos?(pos)
