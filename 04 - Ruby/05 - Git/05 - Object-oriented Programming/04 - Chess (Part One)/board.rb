@@ -20,8 +20,8 @@ class Board
                 elsif x == 6 #White Pawns
                     self[pos] = Pawn.new(:white,self,pos)
                 elsif [0,7].include? y #Rook
-                    self[pos] = Piece.new(:black,self,pos) if x == 0
-                    self[pos] = Piece.new(:white,self,pos) if x == 7
+                    self[pos] = Rook.new(:black,self,pos) if x == 0
+                    self[pos] = Rook.new(:white,self,pos) if x == 7
                 elsif [1,6].include? y #Knight
                     self[pos] = Piece.new(:black,self,pos) if x == 0
                     self[pos] = Piece.new(:white,self,pos) if x == 7
