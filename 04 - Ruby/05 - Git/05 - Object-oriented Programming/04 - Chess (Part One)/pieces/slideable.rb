@@ -24,6 +24,7 @@ module Slideable
 
     def move_dirs
         #Overwritten by subclass
+        raise NotImplementedError
     end
 
     def grow_unblocked_moves_in_dir(dx,dy)

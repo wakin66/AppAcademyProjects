@@ -13,10 +13,12 @@ class Piece
     end
 
     def empty?
-
+        return false
     end
 
     def moves
+        #Subclass implements this
+        raise NotImplementedError
     end
 
     def pos=(val)
@@ -24,6 +26,8 @@ class Piece
     end
 
     def symbol
+        #Subclass implements this
+        raise NotImplementedError
     end
 
     private
