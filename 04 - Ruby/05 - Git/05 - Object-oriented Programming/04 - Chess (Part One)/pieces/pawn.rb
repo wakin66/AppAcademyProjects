@@ -42,8 +42,13 @@ class Pawn < Piece
         steps = Array.new
         left_step = [x+forward_dir,y-1]
         right_step = [x+forward_dir,y+1]
-        steps << left_step if board.valid_pos?(left_step) && board[left_step].symbol != :null
-        steps << right_step if board.valid_pos?(right_step) && board[right_step].symbol != :null
+        steps << left_step
+        steps << right_step
+        steps.select! do |step|
+            board.valid_pos?(step) &&
+            board[step].symbol != :null &&
+            board[step].color != color
+        end
         return steps
     end
 
