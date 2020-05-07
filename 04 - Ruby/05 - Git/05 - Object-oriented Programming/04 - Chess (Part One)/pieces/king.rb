@@ -9,6 +9,10 @@ class King < Piece
         super
     end
 
+    def symbol
+        '♚'.colorize(color)
+    end
+
     def move_diffs
         [
         [-1,0],

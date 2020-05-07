@@ -9,6 +9,10 @@ class Knight < Piece
         super
     end
 
+    def symbol
+        '♞'.colorize(color)
+    end
+
     def move_diffs
         [
         [-2,-1],
