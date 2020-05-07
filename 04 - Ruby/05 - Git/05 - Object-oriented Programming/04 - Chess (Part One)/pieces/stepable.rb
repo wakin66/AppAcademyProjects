@@ -4,7 +4,7 @@ module Stepable
         list = Array.new
         move_diffs.each do |move|
             next_move = [pos.first+move.first,pos.last+move.last]
-            list << next_move if board.valid_move?(next_move) && (board[new_move].empty? || board[new_move].color != color)
+            list << next_move if board.valid_pos?(next_move) && (board[next_move].empty? || board[next_move].color != color)
         end
         return list
     end
