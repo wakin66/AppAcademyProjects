@@ -32,8 +32,8 @@ class Board
                     self[pos] = Queen.new(:black,self,pos) if x == 0
                     self[pos] = Queen.new(:white,self,pos) if x == 7
                 else #King
-                    self[pos] = Piece.new(:black,self,pos) if x == 0
-                    self[pos] = Piece.new(:white,self,pos) if x == 7
+                    self[pos] = King.new(:black,self,pos) if x == 0
+                    self[pos] = King.new(:white,self,pos) if x == 7
                 end
             end
         end
