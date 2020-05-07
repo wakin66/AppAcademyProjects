@@ -32,8 +32,8 @@ class Pawn < Piece
         one_step = [x+forward_dir,y]
         two_step = [x+(forward_dir*2),y]
         steps = Array.new
-        steps << one_step if board.valid_pos?(one_step) && board[one_step].symbol == :null
-        steps << two_step if at_start_row? && board.valid_pos?(two_step) && board[two_step].symbol == :null
+        steps << one_step if board.valid_pos?(one_step) && board[one_step].empty?
+        steps << two_step if at_start_row? && board.valid_pos?(two_step) && board[two_step].empty?
         return steps
     end
 
@@ -46,7 +46,7 @@ class Pawn < Piece
         steps << right_step
         steps.select! do |step|
             board.valid_pos?(step) &&
-            board[step].symbol != :null &&
+            !board[step].empty? &&
             board[step].color != color
         end
         return steps

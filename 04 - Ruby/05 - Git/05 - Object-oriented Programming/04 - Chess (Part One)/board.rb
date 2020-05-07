@@ -50,7 +50,7 @@ class Board
     end
 
     def move_piece(start_pos,end_pos) #add color argument back later
-        raise NoPieceError if self[start_pos].symbol == :null
+        raise NoPieceError if self[start_pos].empty?
         raise EndPositionError.new "Cannot move piece to that location" if !self[start_pos].moves.include?(end_pos)
         piece_to_move = self[start_pos]
         self[start_pos] = NullPiece.instance
@@ -86,7 +86,7 @@ class Board
         (0..7).each do |x|
             (0..7).each do |y|
                 pos = [x,y]
-                list << self[pos] if self[pos].symbol != :nil && !list.include?(self[pos])
+                list << self[pos] if !self[pos].empty? && !list.include?(self[pos])
             end
         end
         return list

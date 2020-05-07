@@ -30,9 +30,9 @@ module Slideable
     def grow_unblocked_moves_in_dir(dx,dy)
         unblocked = Array.new
         next_pos = [pos.first+dx,pos.last+dy]
-        while board.valid_pos?(next_pos) && (board[next_pos].symbol == :null || board[next_pos].color != color)
+        while board.valid_pos?(next_pos) && (board[next_pos].empty? || board[next_pos].color != color)
             unblocked << next_pos
-            break if board[next_pos].symbol != :null && board[next_pos].color != color
+            break if !board[next_pos].empty? && board[next_pos].color != color
             next_pos = [next_pos.first+dx,next_pos.last+dy]
         end
         return unblocked
