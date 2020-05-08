@@ -2,6 +2,7 @@ require_relative 'pieces'
 require_relative 'custom_errors'
 
 class Board
+    attr_reader :rows
 
     def initialize
         @rows = Array.new(8) {Array.new(8)}
