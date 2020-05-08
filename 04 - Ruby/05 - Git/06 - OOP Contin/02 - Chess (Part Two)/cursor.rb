@@ -79,7 +79,7 @@ class Cursor
   def handle_key(key)
     case key
     when :return, :space
-      selected = selected ? false : true
+      @selected = selected ? false : true
       return cursor_pos
     when :left, :right, :up, :down
       update_pos(MOVES[key])
@@ -91,6 +91,6 @@ class Cursor
 
   def update_pos(diff)
     new_pos = [cursor_pos,diff].transpose.map {|itm| itm.sum}
-    cursor_pos = new_pos if board.valid_pos?(new_pos)
+    @cursor_pos = new_pos if board.valid_pos?(new_pos)
   end
 end
