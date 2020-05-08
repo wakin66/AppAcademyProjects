@@ -97,5 +97,7 @@ class Cursor
   end
 
   def update_pos(diff)
+    new_pos = [cursor_pos,diff].transpose.map {|itm| itm.sum}
+    cursor_pos = new_pos if board.valid_pos?(new_pos)
   end
 end
