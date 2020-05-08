@@ -76,6 +76,24 @@ class Cursor
   end
 
   def handle_key(key)
+    case key
+    when :return, :space
+      return cursor_pos
+    when :left
+      update_pos([0,-1])
+      return nil
+    when :right
+      update_pos([0,1])
+      return nil
+    when :up
+      update_pos([-1,0])
+      return nil
+    when :down
+      update_pos([1,0])
+      return nil
+    when :ctrl_c
+      exit 0
+    end
   end
 
   def update_pos(diff)
