@@ -11,9 +11,14 @@ class Display
 
     def render
         background = :light_black
-        board.rows.each do |row|
-            row.each do |sqr|
-                print sqr.to_s.colorize(:background => background)
+        cursor_background = cursor.selected ? :light_green : :light_red
+        board.rows.each.with_index do |row,idx_x|
+            row.each.with_index do |sqr,idx_y|
+                if cursor.cursor_pos != [idx_x,idx_y]
+                    print sqr.to_s.colorize(:background => background)
+                else
+                    print sqr.to_s.colorize(:background => cursor_background)
+                end
                 background = background == :light_black ? :light_blue : :light_black
             end
             background = background == :light_black ? :light_blue : :light_black
