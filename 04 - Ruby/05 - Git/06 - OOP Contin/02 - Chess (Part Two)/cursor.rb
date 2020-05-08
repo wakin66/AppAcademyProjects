@@ -79,17 +79,8 @@ class Cursor
     case key
     when :return, :space
       return cursor_pos
-    when :left
-      update_pos([0,-1])
-      return nil
-    when :right
-      update_pos([0,1])
-      return nil
-    when :up
-      update_pos([-1,0])
-      return nil
-    when :down
-      update_pos([1,0])
+    when :left, :right, :up, :down
+      update_pos(MOVES[key])
       return nil
     when :ctrl_c
       exit 0
