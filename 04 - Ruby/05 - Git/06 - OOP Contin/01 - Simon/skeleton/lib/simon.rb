@@ -36,7 +36,14 @@ class Simon
   end
 
   def require_sequence
-
+    sequence_length.times do |idx|
+      print "Next color: "
+      color = gets.chomp
+      if color != seq[idx]
+        self.game_over = true
+        break
+      end
+    end
   end
 
   def add_random_color
@@ -48,7 +55,7 @@ class Simon
   end
 
   def game_over_message
-    puts "Congratulations, you survived for #{sequence_length} turns"
+    puts "Congratulations, you survived until turn #{sequence_length}."
   end
 
   def reset_game
