@@ -79,7 +79,7 @@ class Board
     end
 
     def find_king(color)
-
+        pieces.select {|piece| piece.class == King && piece.color == color}.first
     end
 
     def pieces
