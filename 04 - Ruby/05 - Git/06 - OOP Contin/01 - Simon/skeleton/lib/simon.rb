@@ -24,15 +24,18 @@ class Simon
       round_success_message
       self.sequence_length += 1
     end
+    sleep(5)
   end
 
   def show_sequence
     add_random_color
+    system('clear')
     seq.each.with_index do |color,idx|
       print color
       print " => " if (idx+1) != sequence_length
     end
-    puts
+    sleep(sequence_length)
+    system('clear')
   end
 
   def require_sequence
