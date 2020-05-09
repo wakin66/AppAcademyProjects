@@ -67,7 +67,7 @@ class Board
     end
 
     def add_piece(piece,pos)
-
+        self[pos] = piece
     end
 
     def checkmate?(color)
