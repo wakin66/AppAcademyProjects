@@ -4,10 +4,10 @@ require_relative 'custom_errors'
 class Board
     attr_reader :rows
 
-    def initialize
+    def initialize(dup = false)
         @rows = Array.new(8) {Array.new(8)}
         @sentinel = NullPiece.instance
-        fill_board
+        fill_board if !dup
     end
 
     def fill_board
@@ -94,7 +94,22 @@ class Board
     end
 
     def dup
-
+        new_board = Board.new(true)
+        (0..7).each do |idx_x|
+            (0..7).each do |idx_y|
+                new_pos = [idx_x,idx_y]
+                piece = self[new_pos]
+                if piece.class == NullPiece
+                    new_board.add_piece(NullPiece.instance,new_pos)
+                else
+                    new_class = piece.class
+                    new_color = piece.color
+                    new_piece = new_class.new(new_color,new_board,new_pos)
+                    new_board.add_piece(new_piece,new_pos)
+                end
+            end
+        end
+        return new_board
     end
 
     def move_piece!(color,start_pos,end_pos)
