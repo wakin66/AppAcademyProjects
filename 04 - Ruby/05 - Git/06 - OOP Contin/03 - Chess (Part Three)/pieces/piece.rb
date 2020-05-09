@@ -30,6 +30,10 @@ class Piece
         raise NotImplementedError
     end
 
+    def valid_moves
+        moves.select {|move| !move_into_check?(move)}
+    end
+
     private
     
     def move_into_check?(end_pos)
