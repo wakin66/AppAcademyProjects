@@ -71,7 +71,7 @@ class Board
     end
 
     def checkmate?(color)
-
+        in_check?(color) && find_king(color).valid_moves.empty?
     end
 
     def in_check?(color)
