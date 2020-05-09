@@ -75,7 +75,7 @@ class Board
     end
 
     def in_check?(color)
-
+        pieces.any? {|piece| piece.moves.include? find_king(color).pos}
     end
 
     def find_king(color)
