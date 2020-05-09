@@ -52,7 +52,7 @@ class Board
 
     def move_piece(start_pos,end_pos) #add color argument back later
         raise NoPieceError if self[start_pos].empty?
-        raise EndPositionError.new "Cannot move piece to that location" if !self[start_pos].moves.include?(end_pos)
+        raise EndPositionError.new "Cannot move piece to that location" if !self[start_pos].valid_moves.include?(end_pos)
         piece_to_move = self[start_pos]
         self[start_pos] = NullPiece.instance
         self[end_pos] = piece_to_move
