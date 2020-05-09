@@ -24,6 +24,7 @@ class Display
             background = background == :light_black ? :light_blue : :light_black
             puts
         end
+        return nil
     end
 
 end
