@@ -13,17 +13,21 @@ class HumanPlayer < Player
         begin
             until start_pos && end_pos
                 if start_pos
+                    system('clear')
                     display.render
                     print "Where do you want to move the #{board[start_pos].class}?"
                     until end_pos
                         start_pos = display.cursor.get_input
+                        system('clear')
                         display.render
                     end
                 else
+                    system('clear')
                     display.render
                     print "What piece do you want to move?"
                     until start_pos
                         start_pos = display.cursor.get_input
+                        system('clear')
                         display.render
                     end
                 end
