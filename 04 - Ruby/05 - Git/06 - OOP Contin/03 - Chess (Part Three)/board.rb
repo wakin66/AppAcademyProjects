@@ -72,7 +72,7 @@ class Board
     end
 
     def checkmate?(color)
-        in_check?(color) && find_king(color).valid_moves.empty?
+        find_king(color) == nil || (in_check?(color) && find_king(color).valid_moves.empty?)
     end
 
     def in_check?(color)
@@ -81,6 +81,8 @@ class Board
 
     def find_king(color)
         pieces.select {|piece| piece.class == King && piece.color == color}.first
+        rescue
+            return nil
     end
 
     def pieces
