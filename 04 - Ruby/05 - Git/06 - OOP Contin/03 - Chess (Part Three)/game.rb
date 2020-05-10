@@ -11,7 +11,7 @@ class Game
             :white => HumanPlayer.new,
             :black => HumanPlayer.new
         }
-        @current_player = :white
+        @current_player = :black
     end
 
     def play
