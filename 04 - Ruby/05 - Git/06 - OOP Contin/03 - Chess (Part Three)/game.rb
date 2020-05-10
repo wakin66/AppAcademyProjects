@@ -3,6 +3,7 @@ require_relative 'players.rb'
 require_relative 'display.rb'
 
 class Game
+    attr_reader :board, :display, :players, :current_player
 
     def initialize
         @board = Board.new
@@ -15,13 +16,21 @@ class Game
     end
 
     def play
-
+        until board.checkmate?(:black) || board.checkmate?(:white)
+            swap_turn!
+            players[current_player].make_move(board)
+        end
+        notify_players
     end
 
     private
 
     def notify_players
-
+        losing_player = current_player == :white ? :black : :white
+        system('clear')
+        display.render
+        puts "Congratulations #{current_player}! You have checkmated #{losing_player}"
+        exit 0
     end
 
     def swap_turn!
