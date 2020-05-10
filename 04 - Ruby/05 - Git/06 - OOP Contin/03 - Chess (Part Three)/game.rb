@@ -9,8 +9,8 @@ class Game
         @board = Board.new
         @display = Display.new(@board)
         @players = {
-            :white => HumanPlayer.new,
-            :black => HumanPlayer.new
+            :white => HumanPlayer.new(:white,display),
+            :black => HumanPlayer.new(:black,display)
         }
         @current_player = :black
     end
