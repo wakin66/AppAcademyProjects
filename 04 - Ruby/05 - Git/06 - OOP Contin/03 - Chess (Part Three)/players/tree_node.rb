@@ -1,4 +1,4 @@
-class PolyTreeNode
+class TreeNode
     attr_reader :parent, :children, :value
 
     def initialize(value)
