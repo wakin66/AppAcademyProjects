@@ -15,23 +15,28 @@ class HumanPlayer < Player
                 if start_pos
                     system('clear')
                     display.render
+                    puts "It is #{color} player's turn."
                     puts "Where do you want to move the #{board[start_pos].class}?"
                     until end_pos
                         end_pos = display.cursor.get_input
                         system('clear')
                         display.render
+                        puts "It is #{color} player's turn."
                         puts "Where do you want to move the #{board[start_pos].class}?"
                     end
                 else
                     system('clear')
                     display.render
+                    puts "It is #{color} player's turn."
                     puts "What piece do you want to move?"
                     until start_pos
                         start_pos = display.cursor.get_input
                         system('clear')
                         display.render
+                        puts "It is #{color} player's turn."
                         puts "What piece do you want to move?"
                         start_pos = nil if start_pos != nil && board[start_pos].empty?
+                        start_pos = nil if start_pos != nil && board[start_pos].color != color
                     end
                     display.cursor.switch_selected
                 end
@@ -43,11 +48,12 @@ class HumanPlayer < Player
             start_pos = nil
             retry
         rescue EndPositionError => e
-            puts e.message
-            sleep(2)
             if start_pos == end_pos
                 start_pos = nil
                 display.cursor.switch_selected
+            else
+                puts e.message
+                sleep(2)
             end
             end_pos = nil
             retry
