@@ -11,7 +11,7 @@ class ComputerPlayer < Player
         piece = get_piece(pieces)
         start_pos = piece.pos
         end_pos = piece.valid_moves[rand(piece.valid_moves.count)]
-        board.make_move(color,start_pos,end_pos)
+        board.move_piece(color,start_pos,end_pos)
     end
 
     def get_piece(pieces)
