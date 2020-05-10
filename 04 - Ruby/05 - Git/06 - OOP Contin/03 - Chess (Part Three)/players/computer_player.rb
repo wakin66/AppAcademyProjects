@@ -14,6 +14,8 @@ class ComputerPlayer < Player
         board.move_piece(color,start_pos,end_pos)
     end
 
+    private
+    
     def get_piece(pieces)
         valid_pieces = pieces.select {|piece| !piece.valid_moves.empty?}
         valid_pieces[rand(valid_pieces.count)]
