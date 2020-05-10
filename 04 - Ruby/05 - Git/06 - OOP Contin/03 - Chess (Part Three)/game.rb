@@ -30,6 +30,7 @@ class Game
         system('clear')
         display.render
         puts "Congratulations #{current_player}! You have checkmated #{losing_player}!"
+        sleep(5)
         exit 0
     end
 
