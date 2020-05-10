@@ -39,15 +39,16 @@ class HumanPlayer < Player
             board.move_piece(color,start_pos,end_pos)
         rescue NoPieceError => e
             puts e.message
+            sleep(2)
             start_pos = nil
             retry
         rescue EndPositionError => e
             puts e.message
+            sleep(2)
             if start_pos == end_pos
                 start_pos = nil
                 display.cursor.switch_selected
             end
-
             end_pos = nil
             retry
         end
