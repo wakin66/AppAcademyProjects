@@ -45,7 +45,7 @@ class Cursor
     handle_key(key)
   end
 
-  def switch_selected
+  def switch
     @selected = selected ? nil : cursor_pos
   end
 

@@ -38,7 +38,7 @@ class HumanPlayer < Player
                         start_pos = nil if start_pos != nil && board[start_pos].empty?
                         start_pos = nil if start_pos != nil && board[start_pos].color != color
                     end
-                    display.cursor.switch_selected
+                    display.cursor.switch
                 end
             end
             board.move_piece(color,start_pos,end_pos)
@@ -50,15 +50,16 @@ class HumanPlayer < Player
         rescue EndPositionError => e
             if start_pos == end_pos
                 start_pos = nil
-                display.cursor.switch_selected
+                display.cursor.switch
             else
                 puts e.message
                 sleep(2)
+                display.cursor.switch
             end
             end_pos = nil
             retry
         end
-        display.cursor.switch_selected
+        display.cursor.switch
     end
 
 end
