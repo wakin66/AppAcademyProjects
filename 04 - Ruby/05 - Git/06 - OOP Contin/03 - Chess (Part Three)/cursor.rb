@@ -37,12 +37,16 @@ class Cursor
   def initialize(cursor_pos, board)
     @cursor_pos = cursor_pos
     @board = board
-    @selected = false
+    @selected = nil
   end
 
   def get_input
     key = KEYMAP[read_char]
     handle_key(key)
+  end
+
+  def switch_selected
+    @selected = selected ? nil : cursor_pos
   end
 
   private
@@ -79,7 +83,6 @@ class Cursor
   def handle_key(key)
     case key
     when :return, :space
-      @selected = selected ? false : true
       return cursor_pos
     when :left, :right, :up, :down
       update_pos(MOVES[key])
