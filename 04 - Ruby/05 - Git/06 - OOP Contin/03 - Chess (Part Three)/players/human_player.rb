@@ -54,7 +54,6 @@ class HumanPlayer < Player
             else
                 puts e.message
                 sleep(2)
-                display.cursor.switch
             end
             end_pos = nil
             retry
