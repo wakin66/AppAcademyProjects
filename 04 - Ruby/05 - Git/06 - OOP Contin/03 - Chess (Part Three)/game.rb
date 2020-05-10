@@ -29,7 +29,7 @@ class Game
         losing_player = current_player == :white ? :black : :white
         system('clear')
         display.render
-        puts "Congratulations #{current_player}! You have checkmated #{losing_player}"
+        puts "Congratulations #{current_player}! You have checkmated #{losing_player}!"
         exit 0
     end
 
@@ -37,4 +37,9 @@ class Game
         @current_player = @current_player == :white ? :black : :white
     end
 
+end
+
+if __FILE__ == $PROGRAM_NAME
+    game = Game.new
+    game.play
 end
