@@ -25,7 +25,7 @@ describe Dessert do
     it "raises an argument error when given a non-integer quantity" do
       expect do
         new_dessert = Dessert.new("brownie","many",chef)
-      end.to raise_exception
+      end.to raise_exception(ArgumentError)
     end
   end
 
@@ -53,9 +53,15 @@ describe Dessert do
   end
 
   describe "#eat" do
-    it "subtracts an amount from the quantity"
+    it "subtracts an amount from the quantity" do
+      expect(dessert.eat(5)).to eq(45)
+    end
 
-    it "raises an error if the amount is greater than the quantity"
+    it "raises an error if the amount is greater than the quantity" do
+      expect do
+        dessert.eat(500)
+      end.to raise_exception("not enough left!")
+    end
   end
 
   describe "#serve" do
