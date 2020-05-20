@@ -24,7 +24,7 @@ describe Dessert do
 
     it "raises an argument error when given a non-integer quantity" do
       expect do
-        let(:new_dessert) {Dessert.new("brownie","many",chef)}
+        new_dessert = Dessert.new("brownie","many",chef)
       end.to raise_exception
     end
   end
@@ -38,7 +38,18 @@ describe Dessert do
   end
 
   describe "#mix!" do
-    it "shuffles the ingredient array"
+    before(:example) do
+      dessert.add_ingredient("mix")
+      dessert.add_ingredient("eggs")
+      dessert.add_ingredient("milk")
+      dessert.add_ingredient("sugar")
+    end
+    it "shuffles the ingredient array" do
+      ingredients = ["mix","eggs","milk","sugar"]
+      dessert.mix!
+      expect(dessert.ingredients).to_not eq(ingredients)
+      expect(dessert.ingredients).to match_array(ingredients)
+    end
   end
 
   describe "#eat" do
