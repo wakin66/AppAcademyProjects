@@ -13,10 +13,5 @@ require 'tdd'
         it "returns an array with no duplicates" do
             expect(my_uniq([1,1,2,3])).to eq([1,2,3])
         end
-
-        it "returns a subarray of the parameter it was passed" do
-            arr = [1,1,2,3]
-            expect(arr).to include(my_uniq(arr))
-        end
     end
 #end
