@@ -4,3 +4,17 @@ def my_uniq(arr)
     arr.each {|itm| new_arr << itm if !new_arr.include?(itm)}
     return new_arr
 end
+
+class Array
+    def two_sum
+        pairs = Array.new
+        self.each.with_index do |itm,first_idx|
+            second_idx = first_idx+1
+            while second_idx < self.length
+                pairs << [first_idx,second_idx] if itm+self[second_idx] == 0
+                second_idx += 1
+            end
+        end
+        return pairs
+    end
+end
