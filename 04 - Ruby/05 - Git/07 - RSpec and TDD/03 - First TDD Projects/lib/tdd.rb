@@ -29,3 +29,17 @@ def my_transpose(arr)
     end
     return new_arr
 end
+
+def stock_picker(prices)
+    raise ArgumentError unless prices.is_a?(Array)
+    profits = Hash.new
+    prices.each.with_index do |price,first_day|
+        last_day = first_day + 1
+        while last_day < prices.length
+            profits[[first_day,last_day]] = prices[last_day]-prices[first_day]
+            last_day += 1
+        end
+    end
+    highest_profits = profits.key(profits.values.max)
+    return highest_profits
+end
