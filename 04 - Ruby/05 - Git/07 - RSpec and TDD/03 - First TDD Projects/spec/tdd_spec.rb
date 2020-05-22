@@ -44,3 +44,32 @@ describe Array do
         end
     end
 end
+
+describe "#my_transpose" do
+    it "takes a 2-D array as an argument" do
+        expect {my_transpose([
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8]
+        ])}.to_not raise_exception
+    end
+
+    it "returns a 2-D array" do
+        expect(my_transpose([
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8]
+        ]).first).to be_an(Array)
+    end
+
+    it "returns a transposed 2-D array" do
+        expect(my_transpose([
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8]
+        ])).to eq([[0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8]]
+        )
+    end
+end
