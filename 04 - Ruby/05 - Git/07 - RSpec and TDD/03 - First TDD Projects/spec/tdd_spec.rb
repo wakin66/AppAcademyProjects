@@ -75,13 +75,29 @@ describe "#my_transpose" do
 end
 
 describe "#stock_picker" do
-    it "takes an array as an argument"
+    let (:prices) {[35, 26, 29, 46, 14, 11, 13, 42, 31, 31]}
+    it "takes an array as an argument" do
+        expect {stock_picker(prices)}.to_not raise_exception
+    end
 
-    it "raises an error if passed anything but an array"
+    it "raises an error if passed anything but an array" do
+        expect {stock_picker("prices")}.to raise_exception(ArgumentError)
+    end
 
-    it "returns an array"
+    it "returns an array" do
+        expect(stock_picker(prices)).to be_an(Array)
+    end
 
-    it "returns an array of length 2"
+    it "returns an array of length 2" do
+        expect(stock_picker(prices).length).to eq(2)
+    end
 
-    
+    it "returns an array whose first element is less than its last element" do
+        pair = stock_picker(prices)
+        expect(pair.first).to be < pair.last
+    end
+
+    it "returns the most profitable pair of days" do
+        expect(stock_picker(prices)).to eq([5,7])
+    end
 end
