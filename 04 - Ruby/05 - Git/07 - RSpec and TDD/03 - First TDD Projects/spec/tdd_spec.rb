@@ -73,3 +73,15 @@ describe "#my_transpose" do
         )
     end
 end
+
+describe "#stock_picker" do
+    it "takes an array as an argument"
+
+    it "raises an error if passed anything but an array"
+
+    it "returns an array"
+
+    it "returns an array of length 2"
+
+    
+end
