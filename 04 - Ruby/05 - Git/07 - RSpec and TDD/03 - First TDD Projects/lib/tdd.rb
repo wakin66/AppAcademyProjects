@@ -18,3 +18,14 @@ class Array
         return pairs
     end
 end
+
+def my_transpose(arr)
+    raise ArgumentError unless arr.is_a?(Array) && arr.first.is_a?(Array)
+    new_arr = Array.new
+    (0..arr.length-1).each do |itm|
+        new_line = Array.new
+        arr.each {|col| new_line << col[itm]}
+        new_arr << new_line
+    end
+    return new_arr
+end
