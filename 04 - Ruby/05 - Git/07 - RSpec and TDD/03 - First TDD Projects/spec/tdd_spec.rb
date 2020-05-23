@@ -187,16 +187,16 @@ describe Hanoi do
         end
 
         describe "@pegs" do
-            it "has a length of 4 for the first peg" do
-                expect(game.pegs.first.length).to eq(4)
+            it "has all 4 rings in order on the first peg" do
+                expect(game.pegs.first).to eq([1,2,3,4])
             end
 
-            it "has a length of 0 for the second peg" do
-                expect(game.pegs[1].length).to eq(0)
+            it "has no rings on the second peg" do
+                expect(game.pegs[1]).to eq([nil,nil,nil,nil])
             end
 
-            it "has a length of 0 for the thrid peg" do
-                expect(game.pegs.last.length).to eq(0)
+            it "has no rings on the third peg" do
+                expect(game.pegs.last).to eq([nil,nil,nil,nil])
             end
         end
     end
@@ -227,16 +227,16 @@ describe Hanoi do
         end
 
         describe "@pegs" do
-            it "has a length of 0 for the first peg" do
-                expect(game.pegs.first.length).to eq(0)
+            it "has no rings on the first peg" do
+                expect(game.pegs.first).to eq([nil,nil,nil,nil])
             end
 
-            it "has a length of 0 for the second peg" do
-                expect(game.pegs[1].length).to eq(0)
+            it "has no rings on the second peg" do
+                expect(game.pegs[1]).to eq([nil,nil,nil,nil])
             end
             
-            it "has a length of 4 for the thrid peg" do
-                expect(game.pegs.last.length).to eq(4)
+            it "has all 4 rings in order on the third peg" do
+                expect(game.pegs.last).to eq([1,2,3,4])
             end
         end
     end
