@@ -69,10 +69,14 @@ class Hanoi
 
     def get_top_ring(peg)
         peg.each.with_index {|ring,idx| return [idx,ring] if !ring.nil?}
+        return [peg.length,nil]
     end
 
     def make_move(start_pos,end_pos)
-
+        ring = get_top_ring(pegs[start_pos])
+        new_pos = get_top_ring(pegs[end_pos]).first-1
+        pegs[start_pos][ring.first] = nil
+        pegs[end_pos][new_pos] = ring.last
     end
 
     def game_over?
