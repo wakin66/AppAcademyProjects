@@ -151,6 +151,10 @@ describe Hanoi do
         it "returns the first ring on a peg" do
             expect(game.get_top_ring(game.pegs.first)).to eq([0,1])
         end
+
+        it "returns the peg length and nil if the peg is empty" do
+            expect(game.get_top_ring(game.pegs.last)).to eq([4,nil])
+        end
     end
 
     describe "#make_move" do
