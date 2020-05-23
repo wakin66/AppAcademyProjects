@@ -61,9 +61,9 @@ class Hanoi
     end
 
     def valid_move?(start_pos,end_pos)
-        return false if pegs[start_pos].all? {|ring| ring.empty?}
-        return true if pegs[end_pos].all? {|ring| ring.empty?}
-        
+        return false if pegs[start_pos].all? {|ring| ring.nil?}
+        return true if pegs[end_pos].all? {|ring| ring.nil?}
+        return true if get_top_ring(pegs[start_pos]) < get_top_ring(pegs[end_pos])
         return false
     end
 
