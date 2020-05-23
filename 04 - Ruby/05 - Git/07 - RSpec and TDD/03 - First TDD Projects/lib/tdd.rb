@@ -43,3 +43,64 @@ def stock_picker(prices)
     highest_profits = profits.key(profits.values.max)
     return highest_profits
 end
+
+class Hanoi
+    attr_reader :pegs
+
+    def initialize
+        @pegs = Array.new(3) {Array.new(4)}
+        fill_pegs
+    end
+
+    def fill_pegs
+        (1..4).each.with_index {|size,idx| @pegs.first[idx] = size}
+    end
+
+    def valid_pos?(pos)
+        [0,1,2].include? pos
+    end
+
+    def valid_move?(start_pos,end_pos)
+        return false if pegs[start_pos].all? {|ring| ring.empty?}
+        return true if pegs[end_pos].all? {|ring| ring.empty?}
+        
+        return false
+    end
+
+    def get_top_ring(peg)
+        
+    end
+
+    def make_move(start_pos,end_pos)
+
+    end
+
+    def game_over?
+        return true if pegs[1].none? {|peg| peg.nil?}
+        return true if pegs[2].none? {|peg| peg.nil?}
+        return false
+    end
+
+    def render
+        peg_list = {
+            nil => "   |   ",
+            1 => "   *   ",
+            2 => "  ***  ",
+            3 => " ***** ",
+            4 => "*******"
+        }
+        puts "#{peg_list[pegs[0][0]]} #{peg_list[pegs[1][0]]} #{peg_list[pegs[2][0]]}"
+        puts "#{peg_list[pegs[0][1]]} #{peg_list[pegs[1][1]]} #{peg_list[pegs[2][1]]}"
+        puts "#{peg_list[pegs[0][2]]} #{peg_list[pegs[1][2]]} #{peg_list[pegs[2][2]]}"
+        puts "#{peg_list[pegs[0][3]]} #{peg_list[pegs[1][3]]} #{peg_list[pegs[2][3]]}"
+        puts "   1       2       3   "
+    end
+
+    def get_move
+
+    end
+
+    def play
+
+    end
+end
