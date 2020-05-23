@@ -153,6 +153,22 @@ describe Hanoi do
         end
     end
 
+    describe "#make_move" do
+        it "takes two integers as arguments" do
+            expect {game.make_move(0,1)}.to_not raise_exception
+        end
+
+        before(:each) {game.make_move(0,1)}
+
+        it "removes the top ring from peg 1" do
+            expect(game.pegs.first.first).to eq(nil)
+        end
+
+        it "adds a ring to peg 2" do
+            expect(game.pegs[1][4]).to eq(1)
+        end
+    end
+
     context "on a new game" do
         describe "render" do
             it "doesn't raise an exception" do
