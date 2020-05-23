@@ -144,12 +144,12 @@ describe Hanoi do
             expect {game.get_top_ring(game.pegs.first)}.to_not raise_exception
         end
 
-        it "returns an integer" do
-            expect(game.get_top_ring(game.pegs.first)).to be_an(Integer)
+        it "returns an array" do
+            expect(game.get_top_ring(game.pegs.first)).to be_an(Array)
         end
 
-        it "returns the first integer in an array" do
-            expect(game.get_top_ring(game.pegs.first)).to eq(1)
+        it "returns the first ring on a peg" do
+            expect(game.get_top_ring(game.pegs.first)).to eq([0,1])
         end
     end
 
