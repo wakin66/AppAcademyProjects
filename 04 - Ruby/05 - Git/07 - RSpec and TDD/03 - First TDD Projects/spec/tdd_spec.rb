@@ -121,7 +121,7 @@ describe Hanoi do
 
     describe "#valid_pos?" do
         it "returns true if given a valid position" do
-            expect(game.valid_pos?(2)).to eq(true)
+            expect(game.valid_pos?(1)).to eq(true)
         end
 
         it "returns false if given an invvalid position" do
@@ -131,11 +131,11 @@ describe Hanoi do
 
     describe "#valid_move?" do
         it "returns true if given a valid move" do
-            expect(game.valid_move?(1,2)).to eq(true)
+            expect(game.valid_move?(0,1)).to eq(true)
         end
 
         it "returns false if given an invalid move" do
-            expect(game.valid_move?(3,1)).to eq(false)
+            expect(game.valid_move?(2,1)).to eq(false)
         end
     end
 
@@ -169,21 +169,21 @@ describe Hanoi do
 
     context "on game over" do
         before(:each) do
+            game.make_move(0,1)
+            game.make_move(0,2)
             game.make_move(1,2)
-            game.make_move(1,3)
-            game.make_move(2,3)
-            game.make_move(1,2)
-            game.make_move(3,1)
-            game.make_move(3,2)
-            game.make_move(1,2)
-            game.make_move(1,3)
-            game.make_move(2,3)
+            game.make_move(0,1)
+            game.make_move(2,0)
             game.make_move(2,1)
-            game.make_move(3,1)
-            game.make_move(2,3)
+            game.make_move(0,1)
+            game.make_move(0,2)
             game.make_move(1,2)
-            game.make_move(1,3)
-            game.make_move(2,3)
+            game.make_move(1,0)
+            game.make_move(2,0)
+            game.make_move(1,2)
+            game.make_move(0,1)
+            game.make_move(0,2)
+            game.make_move(1,2)
         end
 
         describe "#game_over?" do
