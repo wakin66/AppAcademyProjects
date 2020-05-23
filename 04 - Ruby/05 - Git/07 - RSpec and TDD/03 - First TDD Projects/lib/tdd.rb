@@ -68,7 +68,7 @@ class Hanoi
     end
 
     def get_top_ring(peg)
-        
+        peg.each {|ring| return ring if !ring.nil?}
     end
 
     def make_move(start_pos,end_pos)
