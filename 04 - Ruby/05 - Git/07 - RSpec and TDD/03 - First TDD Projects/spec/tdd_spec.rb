@@ -121,11 +121,11 @@ describe Hanoi do
 
     describe "#valid_pos?" do
         it "returns true if given a valid position" do
-            expect(game.valid_pos?(1)).to eq(true)
+            expect(game.valid_pos?("1")).to eq(true)
         end
 
         it "returns false if given an invvalid position" do
-            expect(game.valid_pos?(5)).to eq(false)
+            expect(game.valid_pos?("5")).to eq(false)
         end
     end
 
