@@ -101,3 +101,109 @@ describe "#stock_picker" do
         expect(stock_picker(prices)).to eq([5,7])
     end
 end
+
+describe Hanoi do
+    let(:game) {Hanoi.new}
+
+    describe "#initialize" do
+        it "creates @pegs as an array" do
+            expect(game.pegs).to be_an(Array)
+        end
+
+        it "adds 4 pegs to the first peg" do
+            expect(game.pegs.first.length).to eq(4)
+        end
+
+        it "lists the pegs in ascending order" do
+            expect(game.pegs.first).to eq([1,2,3,4])
+        end
+    end
+
+    describe "#valid_pos?" do
+        it "returns true if given a valid position" do
+            expect(game.valid_pos?(2)).to eq(true)
+        end
+
+        it "returns false if given an invvalid position" do
+            expect(game.valid_pos?(5)).to eq(false)
+        end
+    end
+
+    describe "#valid_move?" do
+        it "returns true if given a valid move" do
+            expect(game.valid_move?(1,2)).to eq(true)
+        end
+
+        it "returns false if given an invalid move" do
+            expect(game.valid_move?(3,1)).to eq(false)
+        end
+    end
+
+    context "on a new game" do
+        describe "render" do
+            it "doesn't raise an exception" do
+                expect {game.render}.to_not raise_exception
+            end
+        end
+
+        describe "#game_over?" do
+            it "returns false" do
+                expect(game.game_over?).to eq(false)
+            end
+        end
+
+        describe "@pegs" do
+            it "has a length of 4 for the first peg" do
+                expect(game.pegs.first.length).to eq(4)
+            end
+
+            it "has a length of 0 for the second peg" do
+                expect(game.pegs[1].length).to eq(0)
+            end
+
+            it "has a length of 0 for the thrid peg" do
+                expect(game.pegs.last.length).to eq(0)
+            end
+        end
+    end
+
+    context "on game over" do
+        before(:each) do
+            game.make_move(1,2)
+            game.make_move(1,3)
+            game.make_move(2,3)
+            game.make_move(1,2)
+            game.make_move(3,1)
+            game.make_move(3,2)
+            game.make_move(1,2)
+            game.make_move(1,3)
+            game.make_move(2,3)
+            game.make_move(2,1)
+            game.make_move(3,1)
+            game.make_move(2,3)
+            game.make_move(1,2)
+            game.make_move(1,3)
+            game.make_move(2,3)
+        end
+
+        describe "#game_over?" do
+            it "returns true" do
+                expect(game.game_over?).to eq(true)
+            end
+        end
+
+        describe "@pegs" do
+            it "has a length of 0 for the first peg" do
+                expect(game.pegs.first.length).to eq(0)
+            end
+
+            it "has a length of 0 for the second peg" do
+                expect(game.pegs[1].length).to eq(0)
+            end
+            
+            it "has a length of 4 for the thrid peg" do
+                expect(game.pegs.last.length).to eq(4)
+            end
+        end
+    end
+end
