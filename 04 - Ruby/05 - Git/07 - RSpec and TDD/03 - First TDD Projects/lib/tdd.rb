@@ -97,7 +97,7 @@ class Hanoi
         puts "#{peg_list[pegs[0][1]]} #{peg_list[pegs[1][1]]} #{peg_list[pegs[2][1]]}"
         puts "#{peg_list[pegs[0][2]]} #{peg_list[pegs[1][2]]} #{peg_list[pegs[2][2]]}"
         puts "#{peg_list[pegs[0][3]]} #{peg_list[pegs[1][3]]} #{peg_list[pegs[2][3]]}"
-        puts "   1       2       3   "
+        puts "   0       1       2   "
     end
 
     def get_pos
@@ -111,6 +111,20 @@ class Hanoi
     end
 
     def play
-
+        until game_over?
+            start_pos = nil
+            end_pos = nil
+            until start_pos && end_pos && valid_move?(start_pos,end_pos)
+                system('clear')
+                render
+                puts "What peg do you want to move from?"
+                start_pos = get_pos
+                puts "What peg do you want to move to?"
+                end_pos = get_pos
+            end
+            make_move(start_pos,end_pos)
+        end
+        puts "CONGRATULATIONS! YOU WON!"
+        sleep(2)
     end
 end
