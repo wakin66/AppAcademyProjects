@@ -139,6 +139,20 @@ describe Hanoi do
         end
     end
 
+    describe "#get_top_ring" do
+        it "takes an array as an argument" do
+            expect {game.get_top_ring(pegs.first)}.to_not raise_exception
+        end
+
+        it "returns an integer" do
+            expect(game.get_top_ring[pegs.first]).to be_an(Integer)
+        end
+
+        it "returns the first integer in an array" do
+            expect(game.get_top_ring[pegs.first]).to eq(1)
+        end
+    end
+
     context "on a new game" do
         describe "render" do
             it "doesn't raise an exception" do
