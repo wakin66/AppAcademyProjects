@@ -57,7 +57,7 @@ class Hanoi
     end
 
     def valid_pos?(pos)
-        [0,1,2].include? pos
+        "012".include? pos
     end
 
     def valid_move?(start_pos,end_pos)
@@ -100,8 +100,14 @@ class Hanoi
         puts "   1       2       3   "
     end
 
-    def get_move
-
+    def get_pos
+        pos = nil
+        until pos && valid_pos?(pos)
+            puts "Invalid peg" if pos
+            print ">> "
+            pos = gets.chomp
+        end
+        return pos.to_i
     end
 
     def play
