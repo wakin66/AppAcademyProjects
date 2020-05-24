@@ -1,12 +1,12 @@
 require 'card'
 
 describe Card do
-    subject(:card) {Card.new(:six,:spade)}
+    subject(:card) {Card.new(:Six,:Spades)}
 
     describe "#initialize" do
         context "takes two symbols as arguments" do
             it "doesn't throw an error when given two symbols" do
-                expect {Card.new(:six,:spade)}.to_not raise_error(ArgumentError)
+                expect {Card.new(:six,:spade)}.to_not raise_error
             end
 
             it "creates @suit as a symbol" do
@@ -20,11 +20,11 @@ describe Card do
 
         context "receives a non-symbol argument" do
             it "raises an ArgumentError on first argument" do
-                expect {Card.new("six",:spade)}.to raise_error(ArgumentError,"Invalid card value")
+                expect {Card.new("six",:Spades)}.to raise_error(ArgumentError,"Invalid card value")
             end
 
             it "raises an ArgumentError on second argument" do
-                expect {Card.new(:six,"spade")}.to raise_error(ArgumentError,"Invalid card suit")
+                expect {Card.new(:Six,"spades")}.to raise_error(ArgumentError,"Invalid card suit")
             end
         end
     end
@@ -35,7 +35,7 @@ describe Card do
         end
 
         it "returns the value and suit" do
-            expect(card.to_s).to eq("6S")
+            expect(card.to_s).to eq("Six of Spades")
         end
-    end
+    end 
 end
