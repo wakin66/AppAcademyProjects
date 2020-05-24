@@ -34,6 +34,10 @@ class Deck
         return @cards.length
     end
 
+    def draw_card
+        return @cards.shift
+    end
+
     private
 
     def fill_cards
