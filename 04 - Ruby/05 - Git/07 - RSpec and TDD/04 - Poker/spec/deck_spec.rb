@@ -24,12 +24,6 @@ describe Deck do
     end
 
     describe "#shuffle" do
-        it "reorders the @cards array" do
-            arr = deck.cards
-            deck.shuffle
-            expect(deck.cards).to match_array(arr)
-        end
-
         it "doesn't add or remove cards" do
             deck_length = deck.size
             deck.shuffle
