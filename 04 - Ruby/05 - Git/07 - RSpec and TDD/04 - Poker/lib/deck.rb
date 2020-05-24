@@ -38,6 +38,10 @@ class Deck
         return @cards.shift
     end
 
+    def shuffle
+        @cards.shuffle
+    end
+
     private
 
     def fill_cards
