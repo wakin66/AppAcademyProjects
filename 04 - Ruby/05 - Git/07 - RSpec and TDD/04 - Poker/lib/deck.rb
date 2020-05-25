@@ -3,19 +3,19 @@ require_relative 'card'
 class Deck
 
     CARD_VALUES = [
-        :two,
-        :three,
-        :four,
-        :five,
-        :six,
-        :seven,
-        :eight,
-        :nine,
-        :ten,
-        :eleven,
-        :twelve,
-        :thirteen,
-        :fourteen
+        :Two,
+        :Three,
+        :Four,
+        :Five,
+        :Six,
+        :Seven,
+        :Eight,
+        :Nine,
+        :Ten,
+        :Jack,
+        :Queen,
+        :King,
+        :Ace
     ]
 
     CARD_SUITS = [
