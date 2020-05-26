@@ -39,11 +39,11 @@ class Hand
     end
 
     def royal_flush?
-
+        straight_flush? && (high_card == :Ace) ? (return true) : (return false)
     end
 
     def straight_flush?
-
+        straight? && flush? ? (return true) : (return false)
     end
 
     def four_of_kind?
