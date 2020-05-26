@@ -47,11 +47,15 @@ class Hand
     end
 
     def four_of_kind?
-
+        values = Hash.new(0)
+        cards.each {|card| values[card.value] += 1}
+        values.one? {|k,v| v == 4} ? (return true) : (return false)
     end
 
     def full_house?
-
+        values = Hash.new(0)
+        cards.each {|card| values[card.value] += 1}
+        (values.one? {|k,v| v == 2}) && (values.one? {|k,v| v == 3}) ? (return true) : (return false)
     end
 
     def flush?
