@@ -2,7 +2,7 @@ require 'hand'
 
 describe Hand do
     let(:card) {double("Card",:value => :Ace)}
-    let(:deck) {double("Deck",:draw_card => card)}
+    let(:deck) {double("deck",:draw_card => card)}
     subject(:hand) {Hand.new(deck)}
 
     before(:each) {allow(card).to receive(:suit).and_return(:Spades,:Clubs,:Diamonds,:Hearts)}
@@ -23,16 +23,16 @@ describe Hand do
 
     describe "#exchange_cards" do
         context "when exchanging 2 cards" do
-            it "calls Deck#draw_card twice" do
+            it "calls Deck#draw_card seven times" do
+                expect(deck).to receive(:draw_card).exactly(7).times
                 hand.exchange_cards([1,2])
-                expect(deck).to receive(:draw_card).twice
             end
         end
 
         context "when exchanging 3 cards" do
-            it "calls Deck#draw_card three times" do
+            it "calls Deck#draw_card eight times" do
+                expect(deck).to receive(:draw_card).exactly(8).times
                 hand.exchange_cards([0,1,2])
-                expect(deck).to receive(:draw_card).exactly(3).times
             end
         end
     end
