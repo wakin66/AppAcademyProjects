@@ -46,4 +46,10 @@ describe Hand do
             expect(hand.compare_hands(:Four_of_Kind,:Flush)).to eq(:Four_of_Kind)
         end
     end
+
+    describe "#display" do
+        it "doesn't raise an error" do
+            expect {hand.display}.to_not raise_exception
+        end
+    end
 end

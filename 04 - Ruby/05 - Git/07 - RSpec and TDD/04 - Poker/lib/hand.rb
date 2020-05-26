@@ -45,6 +45,14 @@ class Hand
         types.index(hand1) < types.index(hand2) ? hand2 : hand1
     end
 
+    def display
+        idx = 0
+        cards.each do |card|
+            puts "#{idx}>> #{card.to_s}"
+            idx += 1
+        end
+    end
+
     private
     attr_writer :cards
     attr_reader :deck
