@@ -28,6 +28,7 @@ class Deck
     def initialize
         @cards = Array.new
         fill_cards
+        shuffle
     end
 
     def size
