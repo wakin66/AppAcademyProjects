@@ -17,7 +17,32 @@ class Hand
     end
 
     def compare_hands(hand1,hand2)
-
+        types = [
+            :Two,
+            :Three,
+            :Four,
+            :Five,
+            :Six,
+            :Seven,
+            :Eight,
+            :Nine,
+            :Ten,
+            :Jack,
+            :Queen,
+            :King,
+            :Ace,
+            :One_Pair,
+            :Two_Pair,
+            :Three_of_Kind,
+            :Straight,
+            :Flush,
+            :Full_House,
+            :Four_of_Kind,
+            :Straight_Flush,
+            :Royal_Flush
+        ]
+        #(return :draw) if hands.index(hand1) == hands.index(hand2)
+        types.index(hand1) < types.index(hand2) ? hand2 : hand1
     end
 
     private
@@ -29,15 +54,15 @@ class Hand
     end
 
     def generate_hand
-        return :royal_flush if royal_flush?
-        return :straight_flush if straight_flush?
-        return :four_of_kind if four_of_kind?
-        return :full_house if full_house?
-        return :flush if flush?
-        return :straight if straight?
-        return :three_of_kind if three_of_kind?
-        return :two_pair if two_pair?
-        return :one_pair if one_pair?
+        return :Royal_Flush if royal_flush?
+        return :Straight_Flush if straight_flush?
+        return :Four_of_Kind if four_of_kind?
+        return :Full_House if full_house?
+        return :Flush if flush?
+        return :Straight if straight?
+        return :Three_of_Kind if three_of_kind?
+        return :Two_Pair if two_pair?
+        return :One_Pair if one_pair?
         return high_card
     end
 

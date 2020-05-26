@@ -39,11 +39,11 @@ describe Hand do
 
     describe "#compare_hands" do
         it "takes two symbols as arguments" do
-            expect {hand.compare_hands(:Four_of_a_Kind,:Flush)}.to_not raise_exception
+            expect {hand.compare_hands(:Four_of_Kind,:Flush)}.to_not raise_exception
         end
 
         it "returns the hand with the highest value" do
-            expect(hand.compare_hands(:Four_of_a_Kind,:Flush)).to eq(:Four_of_a_Kind)
+            expect(hand.compare_hands(:Four_of_Kind,:Flush)).to eq(:Four_of_Kind)
         end
     end
 end
