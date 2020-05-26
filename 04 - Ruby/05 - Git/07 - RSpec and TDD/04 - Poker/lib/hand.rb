@@ -67,7 +67,9 @@ class Hand
     end
 
     def three_of_kind?
-
+        values = Hash.new(0)
+        cards.each {|card| values[card.value] += 1}
+        values.any? {|k,v| v == 3} ? (return true) : (return false)
     end
 
     def two_pair?
