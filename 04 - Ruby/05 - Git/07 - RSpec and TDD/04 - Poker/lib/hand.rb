@@ -41,7 +41,7 @@ class Hand
             :Straight_Flush,
             :Royal_Flush
         ]
-        #(return :draw) if hands.index(hand1) == hands.index(hand2)
+        (return :draw) if types.index(hand1) == types.index(hand2)
         types.index(hand1) < types.index(hand2) ? hand2 : hand1
     end
 
