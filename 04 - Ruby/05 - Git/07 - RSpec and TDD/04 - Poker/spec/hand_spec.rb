@@ -31,6 +31,7 @@ describe Hand do
 
         context "when exchanging 3 cards" do
             it "calls Deck#draw_card three times" do
+                hand.exchange_cards([0,1,2])
                 expect(deck).to receive(:draw_card).exactly(3).times
             end
         end
