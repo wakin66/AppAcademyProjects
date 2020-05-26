@@ -11,7 +11,9 @@ class Hand
     end
 
     def exchange_cards(arr)
-
+        arr.each do |idx|
+            cards[idx] = deck.draw_card
+        end
     end
 
     def compare_hands(hand1,hand2)
@@ -19,6 +21,7 @@ class Hand
     end
 
     private
+    attr_writer :cards
     attr_reader :deck
 
     def fill_hand
@@ -67,7 +70,44 @@ class Hand
     end
 
     def straight?
+        card_values = [
+            :Two,
+            :Three,
+            :Four,
+            :Five,
+            :Six,
+            :Seven,
+            :Eight,
+            :Nine,
+            :Ten,
+            :Jack,
+            :Queen,
+            :King,
+            :Ace
+        ]
+        values = Array.new
+        cards.each {|card| values << card.value}
+        idx = low_card(values)
+        return idx if !idx
+        count = 1
+        4.times do
+            idx += 1
+            return false if !values.include?(card_values[idx])
+        end
+        return true
+    end
 
+    def low_card(values)
+        return 0 if values.include?(:Two)
+        return 1 if values.include?(:Three)
+        return 2 if values.include?(:Four)
+        return 3 if values.include?(:Five)
+        return 4 if values.include?(:Six)
+        return 5 if values.include?(:Seven)
+        return 6 if values.include?(:Eight)
+        return 7 if values.include?(:Nine)
+        return 8 if values.include?(:Ten)
+        return false
     end
 
     def three_of_kind?
