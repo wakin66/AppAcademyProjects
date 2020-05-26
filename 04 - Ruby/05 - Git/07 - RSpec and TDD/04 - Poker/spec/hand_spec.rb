@@ -2,7 +2,7 @@ require 'hand'
 
 describe Hand do
     let(:card) {double("Card",:value => :Ace)}
-    let(:deck) {double("deck",:draw_card => card)}
+    let(:deck) {double("Deck",:draw_card => card)}
     subject(:hand) {Hand.new(deck)}
 
     before(:each) {allow(card).to receive(:suit).and_return(:Spades,:Clubs,:Diamonds,:Hearts)}
