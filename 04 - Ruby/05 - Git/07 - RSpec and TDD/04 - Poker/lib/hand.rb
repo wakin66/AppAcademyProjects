@@ -71,7 +71,9 @@ class Hand
     end
 
     def two_pair?
-
+        values = Hash.new(0)
+        cards.each {|card| values[card.value] += 1}
+        return true if values.count {|k,v| v == 2} == 2
     end
 
     def one_pair?
