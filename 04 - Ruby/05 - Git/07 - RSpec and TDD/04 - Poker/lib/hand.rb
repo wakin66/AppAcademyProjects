@@ -73,13 +73,13 @@ class Hand
     def two_pair?
         values = Hash.new(0)
         cards.each {|card| values[card.value] += 1}
-        return true if values.count {|k,v| v == 2} == 2
+        values.count {|k,v| v == 2} == 2 ? (return true) : (return false)
     end
 
     def one_pair?
         values = Hash.new(0)
         cards.each {|card| values[card.value] += 1}
-        return true if values.one? {|k,v| v == 2}
+        values.one? {|k,v| v == 2} ? (return true) : (return false)
     end
 
     def high_card
