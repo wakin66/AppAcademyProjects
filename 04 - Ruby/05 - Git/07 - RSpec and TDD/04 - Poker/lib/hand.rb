@@ -1,5 +1,3 @@
-require_relative 'deck'
-
 class Hand
     attr_reader :cards, :hand
 
@@ -14,6 +12,7 @@ class Hand
         arr.each do |idx|
             cards[idx] = deck.draw_card
         end
+        hand = generate_hand
     end
 
     def compare_hands(hand1,hand2)
@@ -54,7 +53,7 @@ class Hand
     end
 
     private
-    attr_writer :cards
+    attr_writer :cards, :hand
     attr_reader :deck
 
     def fill_hand
