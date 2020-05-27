@@ -1,6 +1,7 @@
 require_relative 'hand'
 
 class Player
+    attr_accessor :pot
 
     def initialize(deck,starting_pot)
         @hand = Hand.new(deck)
