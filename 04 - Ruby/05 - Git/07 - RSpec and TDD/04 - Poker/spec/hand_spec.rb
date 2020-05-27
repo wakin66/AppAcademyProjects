@@ -35,6 +35,11 @@ describe Hand do
                 hand.exchange_cards([0,1,2])
             end
         end
+
+        it "calls #generate_hand" do
+            expect(hand).to receive(:generate_hand)
+            hand.exchange_cards([])
+        end
     end
 
     describe "#compare_hands" do
